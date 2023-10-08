@@ -1,19 +1,24 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Main from './pages/Main';
+import Test from "./components/Test";
+import Main from "./pages/Home";
+
+import NormalContext from "./context/normalContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main/>}>
-          <Route path="/1" element={<div>1</div>} />
-          <Route path="/2" element={<div>2</div>} />
-          <Route path="/3" element={<div>3</div>} />
-          <Route path="/4" element={<div>4</div>} />
-          <Route path="/5" element={<div>5</div>} />
-        </Route>
-      </Routes>
-    </Router>
+    <NormalContext>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />}>
+            <Route path="/1" element={<Test />} />
+            <Route
+              path="/2"
+              element={<div className="animate__fadeInUpBig">2</div>}
+            />
+          </Route>
+        </Routes>
+      </Router>
+    </NormalContext>
   );
 }
 
