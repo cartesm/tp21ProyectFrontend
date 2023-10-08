@@ -22,11 +22,11 @@ function Main() {
     <main>
       <section className="fixed w-full">
         <Header />
-        <div className="flex relative z-[10000000]">
-          <div className="bg-green-500 w-full min-w-[300px] sm:max-w-[450px] -left-[1000px]  h-full fixed target">
+        <div className="flex">
+          <div className="bg-green-500 w-full min-w-[300px] sm:max-w-[450px] -left-[1000px]  h-full fixed target  z-20">
             <Outlet />
           </div>
-          <div className="bg-blue-500 max-w-full w-full h-screen">
+          <div className="bg-blue-500 relative z-10">
             <Map/>
           </div>
         </div>

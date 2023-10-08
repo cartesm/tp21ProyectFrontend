@@ -1,5 +1,6 @@
-import { createContext, useContext } from "react";
-import { registerUser } from "../api/auth.api";
+import cookies from "js-cookie";
+import { createContext, useContext, useEffect, useState } from "react";
+import { loginUser, logoutUser, registerUser } from "../api/auth.api";
 
 const context = createContext();
 
@@ -9,20 +10,67 @@ export const useAuth = () => {
   return localContext;
 };
 
-const contextProvider = ({ children }) => {
-  const register = async () => {
+const ContextProvider = ({ children }) => {
+  const [loader, setLoader] = useState(false);
+  const [userLoged, setUserLoged] = useState(false);
+
+  const register = async (data) => {
+    setLoader(true);
     try {
-      const resp = (await registerUser()).data;
+      const resp = (await registerUser(data)).data;
+      setLoader(false);
+      setUserLoged(true);
       console.log(resp);
     } catch (err) {
-      console.log(err);
+      setLoader(false);
+      setUserLoged(false);
+      console.log(err.response.data.message);
     }
   };
+
+  const login = async (data) => {
+    setLoader(true);
+    try {
+      const resp = await loginUser(data);
+      console.log(resp.data);
+      setLoader(false);
+      setUserLoged(true);
+    } catch (err) {
+      console.log(err.response.data.message);
+      setLoader(false);
+      setLoader(false);
+    }
+  };
+  const logout = async () => {
+    try {
+      const resp = (await logoutUser()).data;
+      console.log(resp);
+      setUserLoged(false);
+    } catch (err) {
+      console.log(err);
+      setUserLoged(true);
+    }
+  };
+  useEffect(() => {
+    const token = cookies.get("token");
+
+    if (!token) {
+      setUserLoged(false);
+      console.log("unloged");
+    } else {
+      setUserLoged(true);
+      console.log("loged");
+    }
+  }, [userLoged]);
 
   return (
     <context.Provider
       value={{
         register,
+        userLoged,
+        login,
+        loader,
+        logout
       }}
     >
       {children}
@@ -30,4 +78,4 @@ const contextProvider = ({ children }) => {
   );
 };
 
-export default contextProvider;
+export default ContextProvider;
