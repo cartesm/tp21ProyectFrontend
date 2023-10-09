@@ -27,7 +27,7 @@ function DataPoint() {
       <h3>tipos</h3>
       <div className=" flex flex-row gap-3">
         {location.types.map((data, i) => (
-          <Link to={`/point/${id}/type/plastic`} key={i}>{data}</Link>
+          <Link to={`/point/${id}/type/${"plastic"}`} key={i}>{data}</Link>
         ))}
       </div>
       <div className="bg-yellow-200">

@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/Auth.context";
+import { useNormal } from "../context/normalContext";
+import Loader from "./Loader";
 function Register() {
   const {
     register,
@@ -7,12 +10,25 @@ function Register() {
     formState: { errors },
   } = useForm();
 
-  const { register: authRegister, loader} = useAuth();
+  const { setMobment } = useNormal();
+  const { register: authRegister, loader, userLoged, authErrors } = useAuth();
+
+  const [imageLocation, setImageLocation] = useState(null);
 
   const onSubmit = (data) => {
-    authRegister(data);
+    const formData = new FormData();
+
+    formData.append("img", imageLocation);
+    formData.append("userName", data.userName);
+    formData.append("password", data.password);
+    formData.append("email", data.email);
+
+    authRegister(formData);
   };
 
+  useEffect(() => {
+    if (userLoged) setMobment(false);
+  }, [userLoged]);
 
   return (
     <div className="bg-gray-300 flex items-center justify-center w-full h-full">
@@ -29,7 +45,12 @@ function Register() {
             ) : null}
           </div>
           <div>
-            <input type="file" {...register("img", { required: false })} />
+            <input
+              type="file"
+              {...register("img", { required: false })}
+              accept="image/*"
+              onChange={(e) => setImageLocation(e.target.files[0])}
+            />
           </div>
           <div>
             <input
@@ -65,7 +86,8 @@ function Register() {
           />
         </div>
       </form>
-      {loader && <span className="bg-red-600 w-[400px] h-[400px]">loading</span>}
+      {loader && <Loader />}
+      <span>{authErrors}</span>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Main from "./pages/Home";
 
+import { Toaster } from 'sonner';
+
 import AddLocation from "./components/AddLocation";
 import Point from "./components/DataPoint";
 import Login from "./components/Login";
@@ -17,6 +19,7 @@ function App() {
     <AuthContext>
       <NormalContext>
         <LocationContext>
+          <Toaster position="top-right"/>
           <Router>
             <Routes>
               <Route path="/" element={<Main />}>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/Auth.context";
 import { useNormal } from "../context/normalContext";
+import ImageLoader from "./ImageLoader";
 
 function Header() {
   const { setMobment } = useNormal();
@@ -16,10 +17,10 @@ function Header() {
             add point
           </Link>
           <span>{userData?.userName}</span>
-          <img
-            src={userData?.img}
-            alt={userData?.userName}
-            className="w-[35px] bg-white rounded-full"
+          <ImageLoader
+            imageSrc={userData?.img}
+            name={userData?.userName}
+            styles={"w-[35px] bg-white rounded-full"}
           />
         </>
       ) : (

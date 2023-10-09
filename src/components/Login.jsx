@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/Auth.context";
-
+import { useNormal } from "../context/normalContext";
+import Loader from "./Loader";
 function Login() {
   const {
     register,
@@ -8,11 +10,16 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const { login: authLogin } = useAuth();
+  const { setMobment } = useNormal();
+  const { login: authLogin, loader, userLoged, authErrors } = useAuth();
 
   const onSubmit = (data) => {
     authLogin(data);
   };
+
+  useEffect(() => {
+    if (userLoged) setMobment(false);
+  }, [userLoged]);
 
   return (
     <div className="bg-gray-300 flex items-center justify-center w-full h-full">
@@ -38,11 +45,14 @@ function Login() {
           <div>
             <input
               type="password"
-              {...register("password", { min: 5, required: true })}
+              {...register("password", { minLength: 5, required: true })}
               placeholder="Crea una contraseña"
             />
             {errors.password?.type == "required" ? (
               <span>Este campo es obligatorio</span>
+            ) : null}
+            {errors.password?.type == "minLength" ? (
+              <span>La contraseña debe de ser de minimo 5 caracteres</span>
             ) : null}
           </div>
           <input
@@ -52,6 +62,8 @@ function Login() {
           />
         </div>
       </form>
+      {loader && <Loader />}
+      <span>{authErrors}</span>
     </div>
   );
 }

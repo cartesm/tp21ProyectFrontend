@@ -1,12 +1,30 @@
+import L from "leaflet";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 import { useLocations } from "../context/Locations.context";
 import { useNormal } from "../context/normalContext";
 
+import ImageLoader from "./ImageLoader";
+
+import PointIcon from "../assets/pointIcon.png";
+import UserIcon from "../assets/userIcon.png";
 
 function Map() {
-  const { locations } = useLocations();
+  const { locations, liveLocation } = useLocations();
   const { setMobment } = useNormal();
+
+  const userIcon = new L.Icon({
+    iconUrl: UserIcon,
+    iconSize: [40, 40],
+    iconAnchor: [17, 46],
+    popupAnchor: [0, -46],
+  });
+  const pointIcon = new L.Icon({
+    iconUrl: PointIcon,
+    iconSize: [40, 40],
+    iconAnchor: [17, 46],
+    popupAnchor: [0, -46],
+  });
 
   return (
     <div className="bg-yellow-50">
@@ -28,6 +46,7 @@ function Map() {
           if (point.coordinates.length != 2) return null;
           return (
             <Marker
+              icon={pointIcon}
               key={i}
               position={{
                 lat: point.coordinates[0],
@@ -36,7 +55,7 @@ function Map() {
             >
               <Popup>
                 <div>
-                  <img src={point.image} alt={point.name} />
+                  <ImageLoader imageSrc={point.image} name={point.name} styles={"rounded-md"}/>
                   <span>{point.name}</span>
                   <p>{point.description}</p>
                   <Link
@@ -52,6 +71,10 @@ function Map() {
             </Marker>
           );
         })}
+
+        <Marker position={liveLocation} icon={userIcon}>
+          <Popup>Yoy are here</Popup>
+        </Marker>
       </MapContainer>
     </div>
   );

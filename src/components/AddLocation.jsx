@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { useAuth } from "../context/Auth.context";
 import { useLocations } from "../context/Locations.context";
 function AddLocation() {
@@ -36,7 +37,9 @@ function AddLocation() {
         setPoint(fromData);
       },
       () => {
-        // TODO: hacer algo con la denegacion
+        toast(
+          "Para poder ofrecerte todos los servicios, necesitamos acceder a tu ubicación. Si no aceptas, se desactivaran acciones vitales."
+        );
       },
       {
         enableHighAccuracy: true,
@@ -72,6 +75,7 @@ function AddLocation() {
           </div>
           <div>
             <input
+              accept="image/*"
               type="file"
               {...register("img", { required: true })}
               className="w-[200px] h-[200px]"
@@ -94,10 +98,6 @@ function AddLocation() {
             )}
           </div>
           <div className="flex flex-col">
-            {
-              // TODO: implementar mas checkbox
-            }
-
             <div>
               <label>Carton</label>
               <input

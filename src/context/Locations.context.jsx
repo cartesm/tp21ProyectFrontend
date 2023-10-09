@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 import {
   getAllLocation,
   getOneLocation,
@@ -16,6 +17,7 @@ export const useLocations = () => {
 const ContextProvider = ({ children }) => {
   const [location, setLocation] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [liveLocation, setLiveLocation] = useState({ lat: "", lng: "" });
 
   const getAll = async () => {
     try {
@@ -44,6 +46,20 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  (() => {
+    navigator.geolocation.watchPosition(
+      (e) => {
+        setLiveLocation({ lat: e.coords.latitude, lng: e.coords.longitude });
+      },
+      () => {
+        toast(
+          "Para poder ofrecerte todos los servicios, necesitamos acceder a tu ubicación. Si no aceptas, se desactivaran acciones vitales."
+        );
+      },
+      { enableHighAccuracy: true }
+    );
+  })();
+
   useEffect(() => {
     getAll();
   }, [laddLocation]);
@@ -55,6 +71,7 @@ const ContextProvider = ({ children }) => {
         setPoint,
         getOne,
         location,
+        liveLocation,
       }}
     >
       {children}

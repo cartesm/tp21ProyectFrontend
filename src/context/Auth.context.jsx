@@ -14,6 +14,7 @@ const ContextProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);
   const [userLoged, setUserLoged] = useState(false);
   const [userData, setuserData] = useState(null);
+  const [authErrors, setAuthErrors] = useState("");
 
   const register = async (data) => {
     setLoader(true);
@@ -26,7 +27,7 @@ const ContextProvider = ({ children }) => {
     } catch (err) {
       setLoader(false);
       setUserLoged(false);
-      console.log(err.response.data.message);
+      setAuthErrors(err.response.data.message);
     }
   };
 
@@ -39,7 +40,7 @@ const ContextProvider = ({ children }) => {
       setUserLoged(true);
       localStorage.setItem("userData", JSON.stringify(resp.data));
     } catch (err) {
-      console.log(err.response.data.message);
+      setAuthErrors(err.response.data.message);
       setLoader(false);
       setLoader(false);
     }
@@ -66,7 +67,7 @@ const ContextProvider = ({ children }) => {
       setUserLoged(true);
       console.log("loged");
     }
-    setuserData(JSON.parse(localStorage.getItem("userData")))
+    setuserData(JSON.parse(localStorage.getItem("userData")));
   }, [userLoged]);
 
   return (
@@ -77,7 +78,8 @@ const ContextProvider = ({ children }) => {
         login,
         loader,
         logout,
-        userData
+        userData,
+        authErrors,
       }}
     >
       {children}
