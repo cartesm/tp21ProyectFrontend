@@ -1,8 +1,17 @@
-import { MapContainer, Marker, TileLayer } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  ZoomControl,
+} from "react-leaflet";
+import { Link } from "react-router-dom";
 import { useLocations } from "../context/Locations.context";
+import { useNormal } from "../context/normalContext";
 
 function Map() {
   const { locations } = useLocations();
+  const { setMobment } = useNormal();
 
   return (
     <div className="bg-yellow-50">
@@ -16,17 +25,38 @@ function Map() {
         }}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <ZoomControl position="bottomright" />
+
         {locations.map((point, i) => {
-          <Marker
-            key={i}
-            position={{
-              lat: point.coordinates[0].split(",")[0],
-              lng: point.coordinates[0].split(",")[0],
-            }}
-          />;
+          if (point.coordinates.length != 2) return console.log("null");
+          return (
+            <Marker
+              key={i}
+              position={{
+                lat: point.coordinates[0],
+                lng: point.coordinates[1],
+              }}
+            >
+              <Popup>
+                <div>
+                  <img src={point.image} alt={point.name} />
+                  <span>{point.name}</span>
+                  <p >{point.description}</p>
+                  <Link
+                    to={`point/${point._id}`}
+                    onClick={() => {
+                      setMobment(true);
+                    }}
+                  >
+                    Conocer mas.
+                  </Link>
+                </div>
+              </Popup>
+            </Marker>
+          );
         })}
       </MapContainer>
     </div>

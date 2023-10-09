@@ -11,7 +11,7 @@ export const useNormal = () => {
 
 const ContextProvider = ({ children }) => {
 
-  const [mobment, setMobment] = useState(0);
+  const [mobment, setMobment] = useState(false);
 
   return (
     <context.Provider

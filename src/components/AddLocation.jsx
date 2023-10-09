@@ -18,9 +18,11 @@ function AddLocation() {
 
     navigator.geolocation.getCurrentPosition(
       (succsess) => {
-        fromData.append("cords", [
-          succsess.coords.latitude,
-          succsess.coords.longitude,
+        // ! toma pocicion equivocada
+        // ?testing
+        fromData.append("coordinates", [
+          succsess.coords.latitude.toPrecision(),
+          succsess.coords.longitude.toPrecision(),
         ]);
         fromData.append("img", imageData);
         fromData.append("author", {
@@ -35,6 +37,9 @@ function AddLocation() {
       },
       () => {
         // TODO: hacer algo con la denegacion
+      },
+      {
+        enableHighAccuracy: true,
       }
     );
 

@@ -8,4 +8,7 @@ export const getCountryLocation = async (data) => await axios.get("http://localh
 
 export const getAllLocation = async () => await axios.get("http://localhost:3000/get-all-locations")
 
+export const getOneLocation = async (data) => await axios.get(`http://localhost:3000/get-one/${data}`)
+
+
 

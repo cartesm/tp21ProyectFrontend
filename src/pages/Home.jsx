@@ -1,33 +1,43 @@
-import anime from "animejs";
-import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { ImCross } from "react-icons/im";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import Map from '../components/Map';
+import Map from "../components/Map";
 
-import { useNormal } from '../context/normalContext';
+import { useEffect } from "react";
+import { useNormal } from "../context/normalContext";
 function Main() {
+  const navigate = useNavigate();
+  const { mobment, setMobment } = useNormal();
 
-  const {mobment} = useNormal()
+  const handleClick = () => {
+    setMobment(false);
 
+    navigate("/");
+  };
 
   useEffect(() => {
-    anime({
-      targets: ".target",
-      translateX: mobment,
-      duration: 600,
+    handleClick();
+  }, []);
 
-    });
-  }, [mobment]);
   return (
     <main>
       <section className="fixed w-full">
         <Header />
         <div className="flex">
-          <div className="bg-green-500 w-full min-w-[300px] sm:max-w-[450px] -left-[1000px]  h-full fixed target  z-20">
+          <div
+            className={`bg-green-500 w-full min-w-[300px] sm:max-w-[450px] h-full fixed target  z-20 ${
+              mobment ? "block" : "hidden"
+            }`}
+          >
+            <div className="relative top-0 flex items-center w-full h-[30px] justify-end">
+              <button onClick={handleClick} className="p-2">
+                <ImCross />
+              </button>
+            </div>
             <Outlet />
           </div>
           <div className="bg-blue-500 relative z-10">
-            <Map/>
+            <Map />
           </div>
         </div>
       </section>

@@ -1,5 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllLocation, laddLocation } from "../api/locations.api";
+import {
+  getAllLocation,
+  getOneLocation,
+  laddLocation,
+} from "../api/locations.api";
 
 const context = createContext();
 
@@ -10,6 +14,7 @@ export const useLocations = () => {
 };
 
 const ContextProvider = ({ children }) => {
+  const [location, setLocation] = useState(null);
   const [locations, setLocations] = useState([]);
 
   const getAll = async () => {
@@ -30,6 +35,15 @@ const ContextProvider = ({ children }) => {
       console.log(err);
     }
   };
+  const getOne = async (data) => {
+    try {
+      const resp = await getOneLocation(data);
+      console.log(resp.data);
+      setLocation(resp.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     getAll();
@@ -40,6 +54,8 @@ const ContextProvider = ({ children }) => {
       value={{
         locations,
         setPoint,
+        getOne,
+        location,
       }}
     >
       {children}

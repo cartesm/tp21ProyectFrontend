@@ -2,10 +2,11 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Main from "./pages/Home";
 
 import AddLocation from "./components/AddLocation";
+import Point from "./components/DataPoint";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-import Protector from "./Protector.routes";
+import Plastic from './components/static/Plastic';
 
 import AuthContext from "./context/Auth.context";
 import LocationContext from "./context/Locations.context";
@@ -20,11 +21,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Main />}>
                 <Route path="/test" element={<div>esahdjksadgkjgafg</div>} />
-                <Route element={<Protector />}>
-                  <Route element={<Register />} path="/register" />
-                  <Route element={<Login />} path="/login" />
-                </Route>
+                <Route element={<Register />} path="/register" />
+                <Route element={<Login />} path="/login" />
                 <Route element={<AddLocation />} path="/add-location" />
+                <Route element={<Point />} path="/point/:id" >
+                  <Route element={<Plastic/>} path="/point/:id/type/plastic"/>
+                </Route>
               </Route>
             </Routes>
           </Router>
