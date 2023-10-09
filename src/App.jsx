@@ -6,7 +6,7 @@ import Point from "./components/DataPoint";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-import Plastic from './components/static/Plastic';
+import Types from './components/Types';
 
 import AuthContext from "./context/Auth.context";
 import LocationContext from "./context/Locations.context";
@@ -25,7 +25,7 @@ function App() {
                 <Route element={<Login />} path="/login" />
                 <Route element={<AddLocation />} path="/add-location" />
                 <Route element={<Point />} path="/point/:id" >
-                  <Route element={<Plastic/>} path="/point/:id/type/plastic"/>
+                  <Route element={<Types/>} path="/point/:id/type/:typ"/>
                 </Route>
               </Route>
             </Routes>

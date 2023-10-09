@@ -38,7 +38,6 @@ const ContextProvider = ({ children }) => {
   const getOne = async (data) => {
     try {
       const resp = await getOneLocation(data);
-      console.log(resp.data);
       setLocation(resp.data);
     } catch (err) {
       console.log(err);

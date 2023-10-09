@@ -97,21 +97,47 @@ function AddLocation() {
             {
               // TODO: implementar mas checkbox
             }
-            <input
-              type="checkbox"
-              {...register("types", { required: true })}
-              value={"carton"}
-            />
-            <input
-              type="checkbox"
-              {...register("types", { required: true })}
-              value={"papel"}
-            />
-            <input
-              type="checkbox"
-              {...register("types", { required: true })}
-              value={"plastico"}
-            />
+
+            <div>
+              <label>Carton</label>
+              <input
+                type="checkbox"
+                {...register("types", { required: true })}
+                value={"cardboard"}
+              />
+            </div>
+            <div>
+              <label>Papel</label>
+              <input
+                type="checkbox"
+                {...register("types", { required: true })}
+                value={"paper"}
+              />
+            </div>
+            <div>
+              <label>Plastico</label>
+              <input
+                type="checkbox"
+                {...register("types", { required: true })}
+                value={"plastic"}
+              />
+            </div>
+            <div>
+              <label>Vidrio</label>
+              <input
+                type="checkbox"
+                {...register("types", { required: true })}
+                value={"glass"}
+              />
+            </div>
+            <div>
+              <label>Organicos</label>
+              <input
+                type="checkbox"
+                {...register("types", { required: true })}
+                value={"organic"}
+              />
+            </div>
           </div>
           <input type="submit" name="" id="" />
         </div>

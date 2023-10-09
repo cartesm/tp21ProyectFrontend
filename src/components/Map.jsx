@@ -1,13 +1,8 @@
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  ZoomControl,
-} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom";
 import { useLocations } from "../context/Locations.context";
 import { useNormal } from "../context/normalContext";
+
 
 function Map() {
   const { locations } = useLocations();
@@ -28,10 +23,9 @@ function Map() {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <ZoomControl position="bottomright" />
 
         {locations.map((point, i) => {
-          if (point.coordinates.length != 2) return console.log("null");
+          if (point.coordinates.length != 2) return null;
           return (
             <Marker
               key={i}
@@ -44,7 +38,7 @@ function Map() {
                 <div>
                   <img src={point.image} alt={point.name} />
                   <span>{point.name}</span>
-                  <p >{point.description}</p>
+                  <p>{point.description}</p>
                   <Link
                     to={`point/${point._id}`}
                     onClick={() => {

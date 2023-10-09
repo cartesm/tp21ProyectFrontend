@@ -25,7 +25,7 @@ function Main() {
         <Header />
         <div className="flex">
           <div
-            className={`bg-green-500 w-full min-w-[300px] sm:max-w-[450px] h-full fixed target  z-20 ${
+            className={`bg-green-500 w-full min-w-[300px]  sm:max-w-[600px] h-full fixed target overflow-y-auto  z-20 ${
               mobment ? "block" : "hidden"
             }`}
           >
@@ -46,3 +46,4 @@ function Main() {
 }
 
 export default Main;
+
