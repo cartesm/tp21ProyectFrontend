@@ -22,7 +22,10 @@ function Map() {
         {locations.map((point, i) => {
           <Marker
             key={i}
-            position={{ lat: point.coordinates[0], lng: point.coordinates[1] }}
+            position={{
+              lat: point.coordinates[0].split(",")[0],
+              lng: point.coordinates[0].split(",")[0],
+            }}
           />;
         })}
       </MapContainer>

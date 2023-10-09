@@ -4,8 +4,7 @@ import { useNormal } from "../context/normalContext";
 
 function Header() {
   const { mobment, setMobment } = useNormal();
-  const { userLoged, logout } = useAuth();
-
+  const { userLoged, logout, userData } = useAuth();
   const handleClick = () => (mobment != 0 ? setMobment(0) : setMobment(1000));
 
   return (
@@ -13,7 +12,11 @@ function Header() {
       {userLoged ? (
         <>
           <Link onClick={logout}>logout</Link>
-          <Link onClick={handleClick} to={"/add-location"}>add point</Link>
+          <Link onClick={handleClick} to={"/add-location"}>
+            add point
+          </Link>
+          <span>{userData.userName}</span>
+          <img src={userData.img} alt={userData.userName} className="w-[35px] bg-white rounded-full" />
         </>
       ) : (
         <>

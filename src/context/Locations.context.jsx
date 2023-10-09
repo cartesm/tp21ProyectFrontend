@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAllLocation } from "../api/locations.api";
+import { getAllLocation, laddLocation } from "../api/locations.api";
 
 const context = createContext();
 
@@ -22,14 +22,24 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const setPoint = async (data) => {
+    try {
+      const resp = await laddLocation(data);
+      console.log(resp.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getAll();
-  }, []);
+  }, [laddLocation]);
 
   return (
     <context.Provider
       value={{
         locations,
+        setPoint,
       }}
     >
       {children}

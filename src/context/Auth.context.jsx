@@ -13,6 +13,7 @@ export const useAuth = () => {
 const ContextProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);
   const [userLoged, setUserLoged] = useState(false);
+  const [userData, setuserData] = useState(null);
 
   const register = async (data) => {
     setLoader(true);
@@ -21,6 +22,7 @@ const ContextProvider = ({ children }) => {
       setLoader(false);
       setUserLoged(true);
       console.log(resp);
+      localStorage.setItem("userData", JSON.stringify(resp));
     } catch (err) {
       setLoader(false);
       setUserLoged(false);
@@ -35,6 +37,7 @@ const ContextProvider = ({ children }) => {
       console.log(resp.data);
       setLoader(false);
       setUserLoged(true);
+      localStorage.setItem("userData", JSON.stringify(resp.data));
     } catch (err) {
       console.log(err.response.data.message);
       setLoader(false);
@@ -46,6 +49,8 @@ const ContextProvider = ({ children }) => {
       const resp = (await logoutUser()).data;
       console.log(resp);
       setUserLoged(false);
+
+      localStorage.removeItem("userData");
     } catch (err) {
       console.log(err);
       setUserLoged(true);
@@ -61,6 +66,7 @@ const ContextProvider = ({ children }) => {
       setUserLoged(true);
       console.log("loged");
     }
+    setuserData(JSON.parse(localStorage.getItem("userData")))
   }, [userLoged]);
 
   return (
@@ -70,7 +76,8 @@ const ContextProvider = ({ children }) => {
         userLoged,
         login,
         loader,
-        logout
+        logout,
+        userData
       }}
     >
       {children}
