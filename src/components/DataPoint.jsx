@@ -49,7 +49,7 @@ function DataPoint() {
         <div className=" flex items-center justify-center flex-row gap-3">
           {location.types.map((data, i) => (
             <Link
-              className="text-[#2e7d87] hover:underline"
+              className="text-[#2e7d87] px-3 py-1 bg-white rounded-full font-semibold hover:scale-110 transition-all duration-150 hover:bg-cyan-100 "
               to={`/point/${id}/type/${data}`}
               key={i}
             >

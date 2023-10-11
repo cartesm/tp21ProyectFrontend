@@ -4,9 +4,11 @@ import { useNormal } from "../context/normalContext";
 import ImageLoader from "./ImageLoader";
 
 import {
+  BiError,
   BiLocationPlus,
   BiLogIn,
   BiLogOut,
+  BiLogoGithub,
   BiSolidRegistered,
 } from "react-icons/bi";
 
@@ -18,6 +20,14 @@ function Header() {
   return (
     <header className="relative">
       <div className=" h-[30px] flex gap-5 items-center justify-end w-full my-3 px-3 absolute z-[19]">
+        <Link
+          to={"htt://youtube.com"}
+          target="_blank"
+          className="p-1 bg-white hover:scale-110 transition-all duration-150 rounded-full"
+        >
+          <BiLogoGithub className="text-xl" />
+        </Link>
+
         {userLoged ? (
           <>
             <Link
@@ -62,6 +72,13 @@ function Header() {
             </Link>
           </>
         )}
+        <Link
+          to={"/reportIssue"}
+          onClick={open}
+          className="p-1 bg-red-200 hover:scale-110 transition-all duration-150 rounded-full"
+        >
+          <BiError className="text-xl" />
+        </Link>
       </div>
     </header>
   );

@@ -1,6 +1,11 @@
 import cookies from "js-cookie";
 import { createContext, useContext, useEffect, useState } from "react";
-import { loginUser, logoutUser, registerUser } from "../api/auth.api";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  reportIssue,
+} from "../api/auth.api";
 
 const context = createContext();
 
@@ -57,6 +62,17 @@ const ContextProvider = ({ children }) => {
       setUserLoged(true);
     }
   };
+  const report = async (data) => {
+    try {
+      setLoader(true);
+      const resp = await reportIssue(data);
+      console.log(resp.data);
+      setLoader(false);
+    } catch (err) {
+      console.log(err);
+      setLoader(false);
+    }
+  };
   useEffect(() => {
     const token = cookies.get("token");
 
@@ -81,6 +97,7 @@ const ContextProvider = ({ children }) => {
         userData,
         authErrors,
         setAuthErrors,
+        report
       }}
     >
       {children}
