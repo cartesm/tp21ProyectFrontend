@@ -80,6 +80,7 @@ const ContextProvider = ({ children }) => {
         logout,
         userData,
         authErrors,
+        setAuthErrors,
       }}
     >
       {children}

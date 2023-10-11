@@ -27,7 +27,7 @@ function Map() {
   });
 
   return (
-    <div className="bg-yellow-50">
+    <div className="bg-yellow-50 absolute top-0">
       <MapContainer
         center={{ lat: -35.8513233, lng: -71.5876463 }}
         zoom={13}
@@ -42,39 +42,47 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {locations.map((point, i) => {
-          if (point.coordinates.length != 2) return null;
-          return (
-            <Marker
-              icon={pointIcon}
-              key={i}
-              position={{
-                lat: point.coordinates[0],
-                lng: point.coordinates[1],
-              }}
-            >
-              <Popup>
-                <div>
-                  <ImageLoader imageSrc={point.image} name={point.name} styles={"rounded-md"}/>
-                  <span>{point.name}</span>
-                  <p>{point.description}</p>
-                  <Link
-                    to={`point/${point._id}`}
-                    onClick={() => {
-                      setMobment(true);
-                    }}
-                  >
-                    Conocer mas.
-                  </Link>
-                </div>
-              </Popup>
-            </Marker>
-          );
-        })}
+        {locations
+          ? locations.map((point, i) => {
+              if (point.coordinates.length != 2) return null;
+              return (
+                <Marker
+                  icon={pointIcon}
+                  key={i}
+                  position={{
+                    lat: point.coordinates[0],
+                    lng: point.coordinates[1],
+                  }}
+                >
+                  <Popup>
+                    <div>
+                      <ImageLoader
+                        imageSrc={point.image}
+                        name={point.name}
+                        styles={"rounded-md"}
+                      />
+                      <span>{point.name}</span>
+                      <p>{point.description}</p>
+                      <Link
+                        to={`point/${point._id}`}
+                        onClick={() => {
+                          setMobment(true);
+                        }}
+                      >
+                        Conocer mas.
+                      </Link>
+                    </div>
+                  </Popup>
+                </Marker>
+              );
+            })
+          : null}
 
-        <Marker position={liveLocation} icon={userIcon}>
-          <Popup>Yoy are here</Popup>
-        </Marker>
+        {liveLocation ? (
+          <Marker position={liveLocation} icon={userIcon}>
+            <Popup>Yoy are here</Popup>
+          </Marker>
+        ) : null}
       </MapContainer>
     </div>
   );

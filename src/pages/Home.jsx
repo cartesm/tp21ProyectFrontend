@@ -1,4 +1,3 @@
-import { ImCross } from "react-icons/im";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Map from "../components/Map";
@@ -25,18 +24,13 @@ function Main() {
         <Header />
         <div className="flex">
           <div
-            className={`bg-green-500 w-full min-w-[300px]  sm:max-w-[600px] h-full fixed target overflow-y-auto  z-20 ${
+            className={` w-full min-w-[300px] h-screen sm:max-w-[550px] fixed target overflow-y-auto  z-20 ${
               mobment ? "block" : "hidden"
             }`}
           >
-            <div className="relative top-0 flex items-center w-full h-[30px] justify-end">
-              <button onClick={handleClick} className="p-2">
-                <ImCross />
-              </button>
-            </div>
             <Outlet />
           </div>
-          <div className="bg-blue-500 relative z-10">
+          <div className=" relative z-10">
             <Map />
           </div>
         </div>
@@ -46,4 +40,3 @@ function Main() {
 }
 
 export default Main;
-

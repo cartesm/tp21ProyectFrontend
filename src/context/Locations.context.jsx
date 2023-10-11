@@ -18,6 +18,7 @@ const ContextProvider = ({ children }) => {
   const [location, setLocation] = useState(null);
   const [locations, setLocations] = useState([]);
   const [liveLocation, setLiveLocation] = useState({ lat: "", lng: "" });
+  const [loader, setLoader] = useState(false);
 
   const getAll = async () => {
     try {
@@ -31,9 +32,12 @@ const ContextProvider = ({ children }) => {
 
   const setPoint = async (data) => {
     try {
-      const resp = await laddLocation(data);
-      console.log(resp.data);
+      setLoader(true);
+      await laddLocation(data);
+      toast("Ubicacion añadida, gracias por tu aporte");
+      setLoader(false);
     } catch (err) {
+      setLoader(false);
       console.log(err);
     }
   };
@@ -72,6 +76,7 @@ const ContextProvider = ({ children }) => {
         getOne,
         location,
         liveLocation,
+        loader
       }}
     >
       {children}

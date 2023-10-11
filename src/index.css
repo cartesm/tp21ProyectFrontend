@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply font-sans text-[#181818];
+}
 input {
   @apply bg-white outline-none;
 }
@@ -12,25 +15,14 @@ span {
 .loader {
   width: 48px;
   height: 48px;
-  border: 2px solid #FFF;
+  border: 5px solid;
+  border-color: #3f7484 transparent;
   border-radius: 50%;
   display: inline-block;
-  position: relative;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
-.loader::after {
-  content: '';  
-  box-sizing: border-box;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  background: #FF3D00;
-  width: 3px;
-  height: 24px;
-  transform: translateX(-50%);
-}
-    
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -39,3 +31,76 @@ span {
     transform: rotate(360deg);
   }
 } 
+
+.container-input {
+  @apply w-full;
+}
+
+.input-login-register {
+  @apply bg-white  rounded-sm py-1 mt-2 px-3 w-full;
+}
+.label-input {
+  @apply text-lg  font-sans block;
+}
+
+.image-upload::-webkit-file-upload-button {
+  @apply bg-white border-none  outline-none py-1 rounded-sm cursor-pointer
+}
+.image-upload {
+  @apply rounded-sm flex border-2 bg-[#3f7484] text-white border-[#3f7484] text-center w-full cursor-pointer;
+}
+
+*::-webkit-scrollbar {
+  @apply bg-gray-300;
+}
+*::-webkit-scrollbar-thumb {
+  @apply bg-[#3f7484];
+}
+
+.link-header {
+  @apply font-semibold hover:underline;
+}
+
+.submit-button {
+  @apply bg-[#1a7f7d] hover:bg-[#55a49e] duration-150 text-white text-[16px] font-sans px-3 py-2 rounded-sm w-full hover:cursor-pointer;
+}
+
+.auth-errors {
+  @apply text-red-500 font-semibold;
+}
+
+.error-form-input {
+  @apply text-red-600;
+}
+
+.shadow-user {
+  filter: drop-shadow(0 0 11px #4efff8);
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 100%;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+input[type="checkbox"]:checked {
+  background: #1a7f7d;
+}
+input[type="checkbox"]:checked::after {
+  content: "";
+  background: #fff;
+  border-radius: 100%;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+}
+
+.div-check {
+  @apply flex items-center  gap-3 pt-2;
+}

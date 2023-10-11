@@ -3,37 +3,67 @@ import { useAuth } from "../context/Auth.context";
 import { useNormal } from "../context/normalContext";
 import ImageLoader from "./ImageLoader";
 
+import {
+  BiLocationPlus,
+  BiLogIn,
+  BiLogOut,
+  BiSolidRegistered,
+} from "react-icons/bi";
+
 function Header() {
   const { setMobment } = useNormal();
   const { userLoged, logout, userData } = useAuth();
   const open = () => setMobment(true);
 
   return (
-    <div className="bg-red-500 w-full h-[40px] flex items-center gap-6">
-      {userLoged ? (
-        <>
-          <Link onClick={logout}>logout</Link>
-          <Link onClick={open} to={"/add-location"}>
-            add point
-          </Link>
-          <span>{userData?.userName}</span>
-          <ImageLoader
-            imageSrc={userData?.img}
-            name={userData?.userName}
-            styles={"w-[35px] bg-white rounded-full"}
-          />
-        </>
-      ) : (
-        <>
-          <Link onClick={open} to={"/register"}>
-            Register
-          </Link>
-          <Link to={"/login"} onClick={open}>
-            Login
-          </Link>
-        </>
-      )}
-    </div>
+    <header className="relative">
+      <div className=" h-[30px] flex gap-5 items-center justify-end w-full my-3 px-3 absolute z-[19]">
+        {userLoged ? (
+          <>
+            <Link
+              className="font-semibold flex items-center hover:bg-cyan-100 hover:scale-110 transition-all duration-150 text-[#181818] bg-white rounded-full  px-3 py-1"
+              onClick={open}
+              to={"/add-location"}
+            >
+              <BiLocationPlus className="text-xl" />
+              <span>Añadir ubicacion</span>
+            </Link>
+            <ImageLoader
+              imageSrc={userData?.img}
+              name={userData?.userName}
+              styles={
+                "w-[40px] border-2 rounded-full hover:scale-110 transition-all duration-150"
+              }
+            />
+            <Link
+              className="font-semibold flex justify-center items-center hover:bg-cyan-100 hover:scale-110 transition-all duration-150 text-[#181818] bg-white rounded-full p-2"
+              onClick={logout}
+            >
+              <BiLogOut className="text-xl" />
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              className="px-3 py-1 gap-2 font-semibold flex items-center hover:bg-cyan-100 hover:scale-110 transition-all duration-150 text-[#181818] bg-white rounded-full "
+              onClick={open}
+              to={"/register"}
+            >
+              <BiSolidRegistered className="text-xl" />
+              <span>Registro</span>
+            </Link>
+            <Link
+              className="px-3 py-1 font-semibold flex gap-2 items-center hover:bg-cyan-100 hover:scale-110 transition-all duration-150 text-[#181818] bg-white rounded-full "
+              to={"/login"}
+              onClick={open}
+            >
+              <BiLogIn className="text-xl " />
+              <span>Inicio de sesion</span>
+            </Link>
+          </>
+        )}
+      </div>
+    </header>
   );
 }
 
