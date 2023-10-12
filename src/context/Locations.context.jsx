@@ -50,7 +50,7 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  (() => {
+  const locateUser = () => {
     navigator.geolocation.watchPosition(
       (e) => {
         setLiveLocation({ lat: e.coords.latitude, lng: e.coords.longitude });
@@ -62,10 +62,11 @@ const ContextProvider = ({ children }) => {
       },
       { enableHighAccuracy: true }
     );
-  })();
+  };
 
   useEffect(() => {
     getAll();
+    locateUser();
   }, [laddLocation]);
 
   return (
@@ -76,7 +77,7 @@ const ContextProvider = ({ children }) => {
         getOne,
         location,
         liveLocation,
-        loader
+        loader,
       }}
     >
       {children}

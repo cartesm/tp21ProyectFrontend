@@ -79,7 +79,7 @@ function AddLocation() {
           <div className="container-input">
             <label className="label-input">Descripcion</label>
             <textarea
-              className=" w-[400px] min-h-[100px] outline-none mt-2"
+              className=" w-[400px] min-h-[100px] outline-none mt-2 rounded-sm"
               {...register("description", { required: true })}
               type="text"
             />

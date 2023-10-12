@@ -79,9 +79,7 @@ function Map() {
           : null}
 
         {liveLocation ? (
-          <Marker position={liveLocation} icon={userIcon}>
-            <Popup>Yoy are here</Popup>
-          </Marker>
+          <Marker position={liveLocation} icon={userIcon}/>
         ) : null}
       </MapContainer>
     </div>
