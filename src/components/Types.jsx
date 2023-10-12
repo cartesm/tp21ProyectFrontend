@@ -16,30 +16,35 @@ function Types() {
   if (!tpData) return <Loader />;
 
   return (
-    <div>
-      <div className="flex">
-        <ImageLoader
-          imageSrc={tpData[typ].images[0]}
-          name={tpData[typ].name}
-          styles={"w-[200px]"}
-        />
-        <h3>{tpData[typ].name}</h3>
+    <div className="py-12">
+      <h3 className="text-xl font-semibold mx-auto text-center text-[#333]">
+        {tpData[typ].name}
+      </h3>
+      <div className="flex flex-col items-center">
+        <p className="my-5 mx-auto max-w-[450px] indent-5">
+          {tpData[typ].obtention}
+        </p>
+        <div className="w-[300px] h-[170px] object-contain">
+          <ImageLoader
+            imageSrc={tpData[typ].images[0]}
+            name={tpData[typ].name}
+            styles={"w-full h-full"}
+          />
+        </div>
       </div>
-      <div className="flex">
-        <p>{tpData[typ].obtention}</p>
-        <ImageLoader
-          imageSrc={tpData[typ].images[1]}
-          name={tpData[typ].name}
-          styles={"w-[200px]"}
-        />
-      </div>
-      <div className="flex">
-        <p>{tpData[typ].utility}</p>
-        <ImageLoader
-          imageSrc={tpData[typ].images[2]}
-          name={tpData[typ].name}
-          styles={"w-[200px]"}
-        />
+      <div className="flex flex-col items-center ">
+        <p className="my-5 mx-auto max-w-[450px] indent-5">
+          {tpData[typ].utility?.split("&").map((data,key) => (
+            <p className="my-4" key={key}>{data}</p>
+          ))}
+        </p>
+        <div className="object-contain w-[300px] h-[170px]">
+          <ImageLoader
+            imageSrc={tpData[typ].images[1]}
+            name={tpData[typ].name}
+            styles={"w-full h-full"}
+          />
+        </div>
       </div>
     </div>
   );

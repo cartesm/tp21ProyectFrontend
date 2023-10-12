@@ -7,7 +7,6 @@ export default {
         images: [
             "https://images.pexels.com/photos/167538/pexels-photo-167538.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
             "https://images.pexels.com/photos/1587442/pexels-photo-1587442.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/2969925/pexels-photo-2969925.jpeg?auto=compress&cs=tinysrgb&w=600"
         ]
 
     },
@@ -18,7 +17,6 @@ export default {
         images: [
             "https://images.pexels.com/photos/1555199/pexels-photo-1555199.jpeg?auto=compress&cs=tinysrgb&w=600",
             "https://images.pexels.com/photos/4498114/pexels-photo-4498114.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-            "https://images.pexels.com/photos/4498122/pexels-photo-4498122.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
         ]
     },
     glass: {
@@ -28,25 +26,26 @@ export default {
         images: [
             "https://media.istockphoto.com/id/1014690484/es/foto/hojas-de-f%C3%A1brica-de-la-fabricaci%C3%B3n-de-paneles-de-vidrio-de-flotador-claro-templado-cortados-a.jpg?s=1024x1024&w=is&k=20&c=HXVP1Vq6qvqBkXWjC0aFFUHimhBi-GAKnptbMrzoZBA=",
             "https://images.pexels.com/photos/3081940/pexels-photo-3081940.jpeg?auto=compress&cs=tinysrgb&w=600",
-            "https://images.pexels.com/photos/3735178/pexels-photo-3735178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 
         ]
     },
     plastic: {
         name: "Plastico",
-        obtention: "Una persona común en su rutina diaria puede generar residuos plásticos a través de acciones cotidianas como comprar productos en envases plásticos, usar bolsas desechables, consumir bebidas embotelladas o desechar objetos de plástico.",
-        utility: "Con botellas de plástico, se pueden crear macetas, lámparas, o incluso reutilizarlas como contenedores. También es posible fundir y moldear plástico para elaborar objetos útiles, como perchas o utensilios de cocina. La creatividad y el reciclaje son clave para darles una segunda vida a estos materiales y contribuir al cuidado del medio ambiente.",
+        obtention: "Una persona común en su rutina diaria puede generar residuos plásticos a través de acciones cotidianas como comprar productos en envases plásticos, usar bolsas desechables.",
+        utility: "Con botellas de plástico, se pueden crear macetas, lámparas, o incluso reutilizarlas como contenedores.& También es posible fundir y moldear plástico para elaborar objetos útiles, como perchas o utensilios de cocina. La creatividad y el reciclaje son clave para darles una segunda vida a estos materiales y contribuir al cuidado del medio ambiente.",
         images: [
             "https://images.pexels.com/photos/2602537/pexels-photo-2602537.jpeg?auto=compress&cs=tinysrgb&w=600",
             "https://images.pexels.com/photos/2547565/pexels-photo-2547565.jpeg?auto=compress&cs=tinysrgb&w=600",
-            ""
         ]
     },
     organic: {
         "name": "Desechos organicos",
         "obtention": "Se pueden obtener de los hogares, restaurantes y otros establecimientos.",
         "utility": "Se pueden compostar para generar abono orgánico. El abono orgánico se utiliza para fertilizar el suelo y mejorar la calidad de los cultivos.",
-        images: []
+        images: [
+            "https://lanoticia.com/wp-content/uploads/2018/04/dreamstime_s_90415429.jpg",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkPaS35PHfDAyA1PIO2KuDH-zsNyVXjYNvZnxWNoMbxLroWu87k7D3wj-uqmxXl3LJFaQ&usqp=CAU"
+        ]
     }
 }
 

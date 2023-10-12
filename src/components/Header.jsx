@@ -9,6 +9,7 @@ import {
   BiLogIn,
   BiLogOut,
   BiLogoGithub,
+  BiQuestionMark,
   BiSolidRegistered,
 } from "react-icons/bi";
 
@@ -20,14 +21,23 @@ function Header() {
   return (
     <header className="relative">
       <div className=" h-[30px] flex gap-5 items-center justify-end w-full my-3 px-3 absolute z-[19]">
+        <span className="bg-emerald-200 px-3 py-1 rounded-full text-emerald-600 font-semibold">
+          Greenly
+        </span>
         <Link
-          to={"htt://youtube.com"}
+          to={"https://github.com/cartesm/tp21ProyectFrontend"}
           target="_blank"
-          className="p-1 bg-white hover:scale-110 transition-all duration-150 rounded-full"
+          className="p-1 bg-cyan-200 hover:scale-110 transition-all duration-150 rounded-full"
         >
           <BiLogoGithub className="text-xl" />
         </Link>
-
+        <Link
+          to={"https://github.com/cartesm/tp21ProyectBacktend"}
+          target="_blank"
+          className="p-1 bg-indigo-200 hover:scale-110 transition-all duration-150 rounded-full"
+        >
+          <BiLogoGithub className="text-xl" />
+        </Link>
         {userLoged ? (
           <>
             <Link
@@ -38,13 +48,13 @@ function Header() {
               <BiLocationPlus className="text-xl" />
               <span>Añadir ubicacion</span>
             </Link>
-            <ImageLoader
-              imageSrc={userData?.img}
-              name={userData?.userName}
-              styles={
-                "w-[40px] border-2 rounded-full hover:scale-110 transition-all duration-150"
-              }
-            />
+            <div className="w-[40px] object-cover flex items-center justify-center h-[40px] border-2 border-white rounded-full hover:scale-110 transition-all duration-150">
+              <ImageLoader
+                imageSrc={userData?.img}
+                name={userData?.userName}
+                styles={" w-full h-full rounded-full"}
+              />
+            </div>
             <Link
               className="font-semibold flex justify-center items-center hover:bg-cyan-100 hover:scale-110 transition-all duration-150 text-[#181818] bg-white rounded-full p-2"
               onClick={logout}
@@ -78,6 +88,13 @@ function Header() {
           className="p-1 bg-red-200 hover:scale-110 transition-all duration-150 rounded-full"
         >
           <BiError className="text-xl" />
+        </Link>
+        <Link
+          to={"/reportIssue"}
+          onClick={open}
+          className="p-1 bg-blue-200 hover:scale-110 transition-all duration-150 rounded-full"
+        >
+          <BiQuestionMark className="text-xl" />
         </Link>
       </div>
     </header>
