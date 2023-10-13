@@ -23,7 +23,7 @@ function App() {
           <Toaster position="top-right" />
           <Router>
             <Routes>
-              <Route path="/" element={<Main />}>
+              <Route path="/tp21ProyectFrontend/" element={<Main />}>
                 <Route path="/test" element={<div>esahdjksadgkjgafg</div>} />
                 <Route element={<Register />} path="/register" />
                 <Route element={<Login />} path="/login" />
